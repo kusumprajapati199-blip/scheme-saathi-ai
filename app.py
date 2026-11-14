@@ -64,7 +64,7 @@ Verified scheme dataset: {json.dumps(schemes, ensure_ascii=False)}
 User question: {question}
 Give a concise, easy-to-understand answer.
 """
-    response = client.models.generate_content(model="gemini-2.5-flash", contents=prompt)
+    response = client.models.generate_content(model="gemini-3.8-flash", contents=prompt)
     return response.text or "I couldn't generate a response. Please try again."
 
 if check:
