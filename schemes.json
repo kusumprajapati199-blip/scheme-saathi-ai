@@ -1,3 +1,36 @@
+
 {
-  "schemes": []
+  "schemes": [
+    {
+      "name": "PM-KISAN Samman Nidhi",
+      "description": "Financial support scheme for eligible landholding farmer families. Provides Rs. 6000 per year in three equal instalments, subject to exclusions.",
+      "eligibility": {
+        "conditions": [
+          "Must be a landholding farmer family with cultivable land recorded in state or UT land records",
+          "Institutional landholders are excluded",
+          "Certain constitutional post holders, government employees, pensioners, income-tax payers and practising professionals are excluded under scheme rules"
+        ]
+      },
+      "required_documents": [],
+      "application_steps": [],
+      "source_url": "https://pmkisan.gov.in/"
+    },
+    {
+      "name": "Pradhan Mantri Awas Yojana Urban 2.0",
+      "description": "Government housing assistance scheme for eligible urban families.",
+      "eligibility": {
+        "conditions": [
+          "Family must live in an urban area",
+          "Family must not own a pucca house anywhere in India",
+          "EWS annual household income up to Rs. 3 lakh",
+          "LIG annual household income above Rs. 3 lakh and up to Rs. 6 lakh",
+          "MIG annual household income above Rs. 6 lakh and up to Rs. 9 lakh",
+          "Previous housing scheme benefits within the last 20 years may make the family ineligible"
+        ]
+      },
+      "required_documents": [],
+      "application_steps": [],
+      "source_url": "https://pmay-urban.gov.in/"
+    }
+  ]
 }
