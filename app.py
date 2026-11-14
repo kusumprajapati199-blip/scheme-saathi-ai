@@ -65,27 +65,32 @@ Verified scheme dataset: {json.dumps(schemes, ensure_ascii=False)}
 User question: {question}
 Give a concise, easy-to-understand answer.
 """
+    
+    
+
     response = None
 
-for attempt in range(3):
-    try:
-        response = client.models.generate_content(
-            model="gemini-3.5-flash-lite",
-            contents=prompt
-        )
-        break
-    except Exception as e:
-        error = str(e).upper()
+    for attempt in range(3):
+        try:
+            response = client.models.generate_content(
+                model="gemini-3.5-flash-lite",
+                contents=prompt
+            )
+            break
 
-        if "503" not in error and "UNAVAILABLE" not in error:
-            raise
+        except Exception as e:
+            error = str(e).upper()
 
-        if attempt < 2:
-            time.sleep(2 ** (attempt + 1))
-        else:
-            return "Gemini is temporarily busy. Please try again in a minute."
+            if "503" not in error and "UNAVAILABLE" not in error:
+                raise
 
-return response.text or "I couldn't generate a response. Please try again."
+            if attempt < 2:
+                time.sleep(2 ** (attempt + 1))
+            else:
+                return "Gemini is temporarily busy. Please try again in a minute."
+                
+    return response.text or "I couldn't generate a response. Please try again."
+
 
 if check:
     st.subheader("Possible matches")
