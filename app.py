@@ -1,3 +1,4 @@
+import time
 import json
 import os
 import streamlit as st
@@ -64,8 +65,27 @@ Verified scheme dataset: {json.dumps(schemes, ensure_ascii=False)}
 User question: {question}
 Give a concise, easy-to-understand answer.
 """
-    response = client.models.generate_content(model="gemini-3.8-flash", contents=prompt)
-    return response.text or "I couldn't generate a response. Please try again."
+    response = None
+
+for attempt in range(3):
+    try:
+        response = client.models.generate_content(
+            model="gemini-3.5-flash-lite",
+            contents=prompt
+        )
+        break
+    except Exception as e:
+        error = str(e).upper()
+
+        if "503" not in error and "UNAVAILABLE" not in error:
+            raise
+
+        if attempt < 2:
+            time.sleep(2 ** (attempt + 1))
+        else:
+            return "Gemini is temporarily busy. Please try again in a minute."
+
+return response.text or "I couldn't generate a response. Please try again."
 
 if check:
     st.subheader("Possible matches")
